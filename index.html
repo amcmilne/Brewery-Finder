@@ -52,8 +52,7 @@
 					id="search-state"
 					class="input"
 					type="text"
-					placeholder="State"
-					maxlength="2"
+					placeholder="State (no abbreviations)"
 					required
 				/>
 			</div>
@@ -67,9 +66,11 @@
 				</button>
 			</div>
 			<!-- <div class="select">
-				<select>
-					<option>Select your brew</option>
-					<option>With options</option>
+				<select id="location-options">
+					<option>Search By</option>
+					<option value="city">City</option>
+					<option value="state">State</option>
+					<option value="zipcode">Zipcode</option>
 				</select>
 			</div> -->
 		</form>
