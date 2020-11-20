@@ -43,10 +43,12 @@ const getBreweries = zipCodes => {
 						website_url,
 					} = response;
 
-					const brewery = $("<div>").addClass("brewery");
+					const breweryContainer = $("<div>").addClass("box");
+					const breweryArticle = $("<article>").addClass("media");
+					const brewery = $("<div>").addClass("content");
 
 					if (name) {
-						const breweryName = $("<p>").text(name);
+						const breweryName = $("<p>").html(`<strong>${name}</strong>`);
 						brewery.append(breweryName);
 					}
 					if (type) {
@@ -74,7 +76,9 @@ const getBreweries = zipCodes => {
 						brewery.append(breweryWebsite);
 					}
 
-					$("#breweries").append(brewery);
+					breweryArticle.append(brewery);
+					breweryContainer.append(breweryArticle);
+					$("#breweries").append(breweryContainer);
 				}
 			});
 		});
