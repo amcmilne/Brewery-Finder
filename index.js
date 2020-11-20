@@ -85,4 +85,12 @@ const getBreweries = zipCodes => {
 	});
 };
 
-getZipCodes("Columbus", "OH");
+$("#search-button").click(e => {
+	e.preventDefault();
+
+	const city = $("#search-city").val();
+	console.log(city);
+	const state = $("#search-state").val();
+
+	getZipCodes(city, state);
+});
