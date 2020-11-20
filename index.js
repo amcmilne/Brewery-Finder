@@ -1,19 +1,22 @@
-// JavaScript File
-// API Handling
 const breweryAPI = `https://api.openbrewerydb.org/breweries`;
+
+// Add PEXEL API to retrieve 10-20 random images of beer related pictures
+// and save them to local storage in an array with key 'images'
+// Below will retrieve a random image from local storage and append the image
+// to the 'breweryContainer' or 'breweryArticle' - whatever is consistent
+// with layout prescribed by Bulma for their box component.
 
 const getBreweries = (city, state) => {
 	$("#breweries").empty();
 	const breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
 		city
 	)}&by_state=${encodeURIComponent(state)}`;
-	console.log(breweryURL);
+
 	$.ajax({
 		url: breweryURL,
 		method: "GET",
 	}).then(resArr => {
 		resArr.forEach(response => {
-			console.log(response);
 			if (response) {
 				const {
 					name,
