@@ -85,11 +85,10 @@ const getBreweries = zipCodes => {
 	});
 };
 
-$("#search-button").click(e => {
+$("#search-form").submit(e => {
 	e.preventDefault();
 
 	const city = $("#search-city").val();
-	console.log(city);
 	const state = $("#search-state").val();
 
 	getZipCodes(city, state);

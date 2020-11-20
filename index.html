@@ -4,10 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Brewery Finder</title>
-		<link
+		<!-- <link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/bulma.sass"
-		/>
+		/> -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css"
@@ -37,7 +37,7 @@
 			</section>
 		</header>
 
-		<div class="field has-addons">
+		<form id="search-form" class="field has-addons">
 			<div class="control">
 				<input
 					id="search-city"
@@ -58,18 +58,21 @@
 				/>
 			</div>
 			<div class="control">
-				<button id="search-button" class="button is-primary is-bold">
+				<button
+					id="search-button"
+					type="submit"
+					class="button is-primary is-bold"
+				>
 					Search
 				</button>
 			</div>
-
-			<div class="select">
+			<!-- <div class="select">
 				<select>
 					<option>Select your brew</option>
 					<option>With options</option>
 				</select>
-			</div>
-		</div>
+			</div> -->
+		</form>
 
 		<div class="container" id="breweries"></div>
 
