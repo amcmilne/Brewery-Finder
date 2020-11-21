@@ -1,20 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Brewery Finder</title>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css"
-		/>
-		<link rel="stylesheet" href="style.css">
-		<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
-	</head>
-	<body>
-		<header>
-			<!-- <button
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Brewery Finder</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css" />
+	<link rel="stylesheet" href="style.css">
+	<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+</head>
+
+<body>
+	<header>
+		<!-- <button
 				role="button"
 				class="navbar-burger"
 				aria-label="menu"
@@ -24,91 +22,82 @@
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 			</button> -->
-			<section class="hero is-medium is-dark is-bold">
-				<div class="hero-body">
-					<div class="container">
-						<h1 class="title">A Hop, Skip, and a Jump</h1>
-						<h2 class="subtitle">...away from that best breweries in town.</h2>
-					</div>
+		<section class="hero is-medium is-dark is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">A Hop, Skip, and a Jump</h1>
+					<h2 class="subtitle">...away from that best breweries in town.</h2>
 				</div>
-			</section>
-		</header>
+			</div>
+		</section>
+	</header>
 
-		<form id="search-form" class="field has-addons">
-			<div class="control">
-				<input
-					id="search-city"
-					class="input"
-					type="text"
-					placeholder="City"
-					required
-				/>
-			</div>
-			<div class="control">
-				<input
-					id="search-state"
-					class="input"
-					type="text"
-					placeholder="State (no abbreviations)"
-					required
-				/>
-			</div>
-			<div class="control">
-				<button
-					id="search-button"
-					type="submit"
-					class="button is-dark is-bold"
-				>
-					Search
-				</button>
-			</div>
-			<div class="select">
-				<select id="brewery-type">
-					<option value="">Type of Brewery</option>
-					<option value="micro">Micro</option>
-					<option value="nano">Nano</option>
-					<option value="regional">Regional</option>
-					<option value="brewpub">Brewpub</option>
-					<option value="large">Large</option>
-					<option value="planning">Planning</option>
-					<option value="bar">Bar</option>
-					<option value="contract">Contract</option>
-					<option value="proprietor">Proprietor</option>
-				</select>
-			</div>
-			<br>
-			<form id="search-form" class="field has-addons">
-				<div class="control">
-					<input
-						id="search-brewery"
-						class="input"
-						type="text"
-						placeholder="Brewery Name"
-						required
-					/>
-				</div>
-			<div class="control">
-				<button
-					id="search-button"
-					type="submit"
-					class="button is-dark is-bold"
-				>
-					Search
-				</button>
-			</div>
-		</form>
+	<form id="search-form" class="field has-addons">
+		<div class="control">
+			<input 
+			id="search-city" 
+			class="input" 
+			type="text" 
+			placeholder="City"
+			 required />
+		</div>
+		<div class="control">
+			<input 
+			id="search-state" 
+			class="input" 
+			type="text" 
+			placeholder="State (no abbreviations)" 
+			required />
+		</div>
+		<div class="control">
+			<button
+			 id="search-button" 
+			 type="submit" 
+			 class="button is-dark is-bold">
+				Search
+			</button>
+		</div>
+		<div class="select">
+			<select id="brewery-type">
+				<option value="">Type of Brewery</option>
+				<option value="micro">Micro</option>
+				<option value="nano">Nano</option>
+				<option value="regional">Regional</option>
+				<option value="brewpub">Brewpub</option>
+				<option value="large">Large</option>
+				<option value="planning">Planning</option>
+				<option value="bar">Bar</option>
+				<option value="contract">Contract</option>
+				<option value="proprietor">Proprietor</option>
+			</select>
+		</div>
+	</form>
+	<form id="search-form" class="field has-addons">
+		<div class="control">
+		<input 
+		id="search-brewery" 
+		class="input" 
+		type="text" 
+		placeholder="Brewery Name">
+		</div>
+		<div class="control">
+			<button 
+			id="search-button" 
+			type="submit" 
+			class="button is-dark is-bold">
+				Search
+			</button>
+		</div>
+	</form>
 
-		<div class="container is-max-desktop" id="breweries"></div>
+	<div class="container is-max-desktop" id="breweries"></div>
 
-		<button class="button" id="prev">Prev</button>
-		<button class="button" id="next">Next</button>
+	<button class="button" id="prev">Prev</button>
+	<button class="button" id="next">Next</button>
 
-		<script
-			src="https://code.jquery.com/jquery-3.5.1.min.js"
-			integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-			crossorigin="anonymous"
-		></script>
-		<script src="index.js"></script>
-	</body>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<script src="index.js"></script>
+</body>
+
 </html>
-
