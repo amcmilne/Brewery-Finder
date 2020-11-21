@@ -4,10 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Brewery Finder</title>
-		<!-- <link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/bulma.sass"
-		/> -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css"
@@ -17,7 +13,7 @@
 
 	<body>
 		<header>
-			<button
+			<!-- <button
 				role="button"
 				class="navbar-burger"
 				aria-label="menu"
@@ -26,7 +22,7 @@
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
-			</button>
+			</button> -->
 			<section class="hero is-medium is-primary is-bold">
 				<div class="hero-body">
 					<div class="container">
@@ -65,14 +61,20 @@
 					Search
 				</button>
 			</div>
-			<!-- <div class="select">
-				<select id="location-options">
-					<option>Search By</option>
-					<option value="city">City</option>
-					<option value="state">State</option>
-					<option value="zipcode">Zipcode</option>
+			<div class="select">
+				<select id="brewery-type">
+					<option value="">Type of Brewery</option>
+					<option value="micro">Micro</option>
+					<option value="nano">Nano</option>
+					<option value="regional">Regional</option>
+					<option value="brewpub">Brewpub</option>
+					<option value="large">Large</option>
+					<option value="planning">Planning</option>
+					<option value="bar">Bar</option>
+					<option value="contract">Contract</option>
+					<option value="proprietor">Proprietor</option>
 				</select>
-			</div> -->
+			</div>
 		</form>
 
 		<div class="container is-max-desktop" id="breweries"></div>
