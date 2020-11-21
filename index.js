@@ -7,7 +7,7 @@ const locationIqKey = "pk.aa879f60d2bb5ec17e4952ada25eaec7";
 const brewerySearchAPI =
 	"https://api.openbrewerydb.org/breweries/search?query=dog";
 
-let currentPage = 1;
+var currentPage = 1;
 
 const getPhotos = () => {
 	$.ajax({
@@ -33,13 +33,14 @@ const selectRandomImage = imageArr => {
 
 const getCurrentUserLocation = (latitude, longitude) => {
 	const url = `https://us1.locationiq.com/v1/reverse.php?key=${locationIqKey}&lat=${latitude}&lon=${longitude}&format=json`;
-
 	$.ajax({
 		url,
 		method: "GET",
 	}).then(response => {
 		const city = response.address.city;
 		const state = response.address.state;
+		localStorage.setItem("city", city);
+		localStorage.setItem("state", state);
 		renderBreweries(city, state, null, currentPage);
 	});
 };
@@ -53,7 +54,7 @@ const renderBreweries = (city, state, type, page) => {
 	if (type) {
 		breweryURL += `&by_type=${type}`;
 	}
-	console.log(breweryURL);
+
 	$.ajax({
 		url: breweryURL,
 		method: "GET",
@@ -157,7 +158,7 @@ $("#prev").click(() => {
 	}
 });
 
-$("#next").click(() => {
+$("#next").click(e => {
 	const city = localStorage.getItem("city");
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
