@@ -4,6 +4,9 @@ const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
 
 const locationIqKey = "pk.aa879f60d2bb5ec17e4952ada25eaec7";
 
+const brewerySearchAPI =
+	"https://api.openbrewerydb.org/breweries/search?query=dog";
+
 let currentPage = 1;
 
 const getPhotos = () => {
@@ -28,9 +31,18 @@ const selectRandomImage = imageArr => {
 	return imageArr[imageIndex];
 };
 
-const getCurrentUserLocation = () => {
-	const url = `https://us1.locationiq.com/v1/reverse.php?key=${locationIqKey}&lat=${}&lon=${}&format=json`
-}
+const getCurrentUserLocation = (latitude, longitude) => {
+	const url = `https://us1.locationiq.com/v1/reverse.php?key=${locationIqKey}&lat=${latitude}&lon=${longitude}&format=json`;
+
+	$.ajax({
+		url,
+		method: "GET",
+	}).then(response => {
+		const city = response.address.city;
+		const state = response.address.state;
+		renderBreweries(city, state, null, currentPage);
+	});
+};
 
 const renderBreweries = (city, state, type, page) => {
 	$("#breweries").empty();
@@ -151,4 +163,13 @@ $("#next").click(() => {
 	const type = localStorage.getItem("type");
 	currentPage++;
 	renderBreweries(city, state, type, currentPage);
+});
+
+// Auto-render Current Location Information
+$("document").ready(() => {
+	navigator.geolocation.getCurrentPosition(response => {
+		const latitude = response.coords.latitude;
+		const longitude = response.coords.longitude;
+		getCurrentUserLocation(latitude, longitude);
+	});
 });
