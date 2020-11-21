@@ -2,6 +2,8 @@ const breweryAPI = `https://api.openbrewerydb.org/breweries`;
 
 const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
 
+let currentPage = 1;
+
 const getPhotos = () => {
 	$.ajax({
 		beforeSend: function (request) {
@@ -24,16 +26,20 @@ const selectRandomImage = imageArr => {
 	return imageArr[imageIndex];
 };
 
-const renderBreweries = (city, state) => {
+const renderBreweries = (city, state, page) => {
 	$("#breweries").empty();
 	const breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
 		city
-	)}&by_state=${encodeURIComponent(state)}&per_page=10`;
+	)}&by_state=${encodeURIComponent(state)}&per_page=5&page=${page}`;
 
 	$.ajax({
 		url: breweryURL,
 		method: "GET",
 	}).then(resArr => {
+		if (resArr.length < 1) {
+			currentPage--;
+			renderBreweries(city, state, currentPage);
+		}
 		resArr.forEach(response => {
 			if (response) {
 				const {
@@ -109,7 +115,27 @@ $("#search-form").submit(e => {
 	const city = $("#search-city").val();
 	const state = $("#search-state").val();
 
-	renderBreweries(city, state);
+	localStorage.setItem("city", city);
+	localStorage.setItem("state", state);
+	currentPage = 1;
+
+	getPhotos();
+	renderBreweries(city, state, currentPage);
 });
 
-// getPhotos();
+$("#prev").click(() => {
+	const city = localStorage.getItem("city");
+	const state = localStorage.getItem("state");
+	if (currentPage > 1) {
+		currentPage--;
+		console.log(currentPage);
+		renderBreweries(city, state, currentPage);
+	}
+});
+
+$("#next").click(() => {
+	const city = localStorage.getItem("city");
+	const state = localStorage.getItem("state");
+	currentPage++;
+	renderBreweries(city, state, currentPage);
+});
