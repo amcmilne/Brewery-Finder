@@ -1,16 +1,34 @@
 const breweryAPI = `https://api.openbrewerydb.org/breweries`;
 
-// Add PEXEL API to retrieve 10-20 random images of beer related pictures
-// and save them to local storage in an array with key 'images'
-// Below will retrieve a random image from local storage and append the image
-// to the 'breweryContainer' or 'breweryArticle' - whatever is consistent
-// with layout prescribed by Bulma for their box component.
+const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
 
-const getBreweries = (city, state) => {
+const getPhotos = () => {
+	$.ajax({
+		beforeSend: function (request) {
+			request.setRequestHeader("Authorization", pexelsKey);
+		},
+		url:
+			"https://api.pexels.com/v1/search?query=beer&orientation=portrait&per_page=30",
+		method: "GET",
+	}).then(response => {
+		const photos = [];
+		response.photos.forEach(photo => {
+			photos.push(photo.src.small);
+		});
+		localStorage.setItem("images", JSON.stringify(photos));
+	});
+};
+
+const selectRandomImage = imageArr => {
+	const imageIndex = Math.floor(Math.random() * imageArr.length);
+	return imageArr[imageIndex];
+};
+
+const renderBreweries = (city, state) => {
 	$("#breweries").empty();
 	const breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
 		city
-	)}&by_state=${encodeURIComponent(state)}`;
+	)}&by_state=${encodeURIComponent(state)}&per_page=10`;
 
 	$.ajax({
 		url: breweryURL,
@@ -58,10 +76,25 @@ const getBreweries = (city, state) => {
 					brewery.append(breweryPhone);
 				}
 				if (website_url) {
-					const breweryWebsite = $("<p>").text(`Website: ${website_url}`);
+					const breweryWebsite = $("<p>").html(
+						`Website: <a href=${website_url}>${website_url}</a>`
+					);
 					brewery.append(breweryWebsite);
 				}
 
+				const imageURL = selectRandomImage(
+					JSON.parse(localStorage.getItem("images"))
+				);
+
+				const breweryImage = $(
+					`<div class="media-left">
+						<figure class="image">
+							<img src=${imageURL} alt="Image" />
+						</figure>
+					</div>`
+				);
+
+				breweryArticle.append(breweryImage);
 				breweryArticle.append(brewery);
 				breweryContainer.append(breweryArticle);
 				$("#breweries").append(breweryContainer);
@@ -76,5 +109,7 @@ $("#search-form").submit(e => {
 	const city = $("#search-city").val();
 	const state = $("#search-state").val();
 
-	getBreweries(city, state);
+	renderBreweries(city, state);
 });
+
+// getPhotos();
