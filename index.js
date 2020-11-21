@@ -91,85 +91,82 @@ const renderBreweries = (city, state, type, page) => {
 		resArr.forEach(response => {
 			// VARIABLES
 			// =====================================================================
-			console.log(response);
-			// Destructure off response keys into variables
-			if (response) {
-				const {
-					name,
-					type,
-					street,
-					city,
-					state,
-					postal_code,
-					phone,
-					website_url,
-				} = response;
 
-				// ELEMENTS
-				// =====================================================================
+			const {
+				name,
+				type,
+				street,
+				city,
+				state,
+				postal_code,
+				phone,
+				website_url,
+			} = response;
 
-				// First level dynamic element
-				const breweryContainer = $("<div>").addClass("box");
-				// Second level dynamic element. Contains 'brewery' and 'breweryImage'
-				const breweryArticle = $("<article>").addClass("media");
-				// Third level dynamic element. Contains content using response data from call to 'breweryURL'.
-				const brewery = $("<div>").addClass("content");
+			// ELEMENTS
+			// =====================================================================
 
-				// Conditionally render content if the corresponding data is
-				// retrieved from call to 'breweryURL'.
-				if (name) {
-					const breweryName = $("<p>").html(`<strong>${name}</strong>`);
-					brewery.append(breweryName);
-				}
-				if (type) {
-					const breweryType = $("<p>").text(`Type: ${type}`);
-					brewery.append(breweryType);
-				}
-				if (street) {
-					const breweryStreet = $("<p>").text(street);
-					brewery.append(breweryStreet);
-				}
-				if (city && state && postal_code) {
-					const breweryAddress = $("<p>").text(
-						`${city}, ${state} ${postal_code}`
-					);
-					brewery.append(breweryAddress);
-				}
-				if (phone) {
-					const breweryPhone = $("<p>").html(
-						`Phone: <a href='tel:${phone}'>${phone}</a>`
-					);
-					brewery.append(breweryPhone);
-				}
-				if (website_url) {
-					const breweryWebsite = $("<p>").html(
-						`Website: <a href=${website_url}>${website_url}</a>`
-					);
-					brewery.append(breweryWebsite);
-				}
+			// First level dynamic element
+			const breweryContainer = $("<div>").addClass("box");
+			// Second level dynamic element. Contains 'brewery' and 'breweryImage'
+			const breweryArticle = $("<article>").addClass("media");
+			// Third level dynamic element. Contains content using response data from call to 'breweryURL'.
+			const brewery = $("<div>").addClass("content");
 
-				// Sets 'imageURL' to a random image url from local storage.
-				const imageURL = selectRandomImage(
-					JSON.parse(localStorage.getItem("images"))
+			// Conditionally render content if the corresponding data is
+			// retrieved from call to 'breweryURL'.
+			if (name) {
+				const breweryName = $("<p>").html(`<strong>${name}</strong>`);
+				brewery.append(breweryName);
+			}
+			if (type) {
+				const breweryType = $("<p>").text(`Type: ${type}`);
+				brewery.append(breweryType);
+			}
+			if (street) {
+				const breweryStreet = $("<p>").text(street);
+				brewery.append(breweryStreet);
+			}
+			if (city && state && postal_code) {
+				const breweryAddress = $("<p>").text(
+					`${city}, ${state} ${postal_code}`
 				);
+				brewery.append(breweryAddress);
+			}
+			if (phone) {
+				const breweryPhone = $("<p>").html(
+					`Phone: <a href='tel:${phone}'>${phone}</a>`
+				);
+				brewery.append(breweryPhone);
+			}
+			if (website_url) {
+				const breweryWebsite = $("<p>").html(
+					`Website: <a href=${website_url}>${website_url}</a>`
+				);
+				brewery.append(breweryWebsite);
+			}
 
-				// Third level dynamic content. Displays image from 'imageURL'.
-				const breweryImage = $(
-					`<div class="media-left">
+			// Sets 'imageURL' to a random image url from local storage.
+			const imageURL = selectRandomImage(
+				JSON.parse(localStorage.getItem("images"))
+			);
+
+			// Third level dynamic content. Displays image from 'imageURL'.
+			const breweryImage = $(
+				`<div class="media-left">
 						<figure class="image">
 							<img src=${imageURL} alt="Image" />
 						</figure>
 					</div>`
-				);
+			);
 
-				// APPEND ELEMENTS
-				// =====================================================================
+			// APPEND ELEMENTS
+			// =====================================================================
 
-				breweryArticle.append(breweryImage);
-				breweryArticle.append(brewery);
-				breweryContainer.append(breweryArticle);
-				$("#breweries").append(breweryContainer);
-			}
+			breweryArticle.append(breweryImage);
+			breweryArticle.append(brewery);
+			breweryContainer.append(breweryArticle);
+			$("#breweries").append(breweryContainer);
 		});
 	});
 };
