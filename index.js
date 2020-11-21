@@ -1,3 +1,4 @@
+
 const breweryAPI = `https://api.openbrewerydb.org/breweries`;
 
 const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
@@ -146,3 +147,4 @@ $("#next").click(() => {
 	currentPage++;
 	renderBreweries(city, state, type, currentPage);
 });
+ 
