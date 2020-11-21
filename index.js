@@ -1,7 +1,8 @@
-
 const breweryAPI = `https://api.openbrewerydb.org/breweries`;
 
 const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
+
+const locationIqKey = "pk.aa879f60d2bb5ec17e4952ada25eaec7";
 
 let currentPage = 1;
 
@@ -26,6 +27,10 @@ const selectRandomImage = imageArr => {
 	const imageIndex = Math.floor(Math.random() * imageArr.length);
 	return imageArr[imageIndex];
 };
+
+const getCurrentUserLocation = () => {
+	const url = `https://us1.locationiq.com/v1/reverse.php?key=${locationIqKey}&lat=${}&lon=${}&format=json`
+}
 
 const renderBreweries = (city, state, type, page) => {
 	$("#breweries").empty();
@@ -147,4 +152,3 @@ $("#next").click(() => {
 	currentPage++;
 	renderBreweries(city, state, type, currentPage);
 });
- 
