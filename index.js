@@ -6,6 +6,7 @@ const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
 
 const locationIqKey = "pk.aa879f60d2bb5ec17e4952ada25eaec7";
 
+
 var currentPage = 1;
 
 
@@ -26,6 +27,15 @@ function setDefaultParameters() {
 		locationName: ""
 	}
 }
+
+
+const brewerySearchAPI =
+	"https://api.openbrewerydb.org/breweries/search?query=dog";
+
+var currentPage = 1;
+
+// --------------------------- FUNCTIONS --------------------------------
+
 
 // Upon performing a search, retrieve 30 beer-related images (as urls) using Pexels API
 // and store in local storage for later use in the renderBreweries function
@@ -69,6 +79,7 @@ const getCurrentUserLocation = (latitude, longitude) => {
 		renderBreweries(city, state, null, currentPage);
 	});
 };
+
 
 //use brewerysearchAPI to find brewery by brewery name search
 function getBreweryByBreweryName(locationName) {
@@ -127,10 +138,12 @@ function queryStringBuilder(params) {
 }
 
 
+
 // Using the OpenBreweryDB API, retrieve information on breweries based on user input
 // and dynamically render content as individual sections that contains the response data
 // as information for each retrieved brewery. Appends a random image from local storage
 // (refer to getPhotos function) to each section.
+
 
 const renderBreweries = (searchParams) => {
 	// Empty out pre-existing content in div with id 'breweries'
@@ -139,6 +152,22 @@ const renderBreweries = (searchParams) => {
 	// Create URL to be used in ajax call using base URL and arguments passed in as
 	// query parameters
 	let breweryURL = queryStringBuilder(searchParams).href;
+
+const renderBreweries = (city, state, type, page) => {
+	// Empty out pre-existing content in div with id 'breweries'
+	$("#breweries").empty();
+
+	// Create URL to be used in ajax call using base URL and arguments passed in as
+	// query parameters
+	let breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
+		city
+	)}&by_state=${encodeURIComponent(state)}&per_page=5&page=${page}`;
+
+	// Only append type query parameter if a type is provided
+	if (type) {
+		breweryURL += `&by_type=${type}`;
+	}
+
 
 	// Make AJAX GET request to OpenBreweryDB with 'breweryURL'
 	$.ajax({
@@ -210,10 +239,13 @@ const renderBreweries = (searchParams) => {
 				brewery.append(breweryWebsite);
 			}
 
+
 			// Sets 'imageURL' to a random image url from local storage.
 			const imageURL = selectRandomImage(
 				JSON.parse(localStorage.getItem("images"))
 			);
+
+
 
 			// Third level dynamic content. Displays image from 'imageURL'.
 			const breweryImage = $(
@@ -249,6 +281,7 @@ $("#search-form").submit(e => {
 	const state = $("#search-state").val();
 	const type = $("#brewery-type").val();
 
+
 	//set parameters dictionary
 	params['city'] = city;
 	params['state'] = state;
@@ -260,6 +293,7 @@ $("#search-form").submit(e => {
 	localStorage.setItem("state", state);
 	localStorage.setItem("type", type);
 	// Set currentPage to 1
+
 	currentPage = 1;
 
 	getPhotos(); 
@@ -279,6 +313,7 @@ $("#search-form2").submit(e => {
 
 	localStorage.setItem("search-brewery", location);
 	// Set currentPage to 1
+
 	currentPage = 1;
 
 	//set parameters dictionary
@@ -296,6 +331,7 @@ $("#prev").click(() => {
 	const city = localStorage.getItem("city");
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
+
 
 	//copy parameters dictionary
 	setDefaultParameters();
@@ -323,6 +359,7 @@ $("#next").click(() => {
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
 
+
 	//copy parameters dictionary
 	setDefaultParameters();
 	const params = brwParametersDict;
@@ -330,6 +367,7 @@ $("#next").click(() => {
 	params['city'] = city;
 	params['state'] = state;
 	params['type'] = type;
+
 
 	// Increment page
 	currentPage++;
