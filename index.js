@@ -6,29 +6,7 @@ const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
 
 const locationIqKey = "pk.aa879f60d2bb5ec17e4952ada25eaec7";
 
-const brewerySearchAPI =
-	"https://api.openbrewerydb.org/breweries/search?query=dog";
-
 var currentPage = 1;
-
-// var brwParametersDict;
-
-// setDefaultParameters();
-
-// --------------------------- FUNCTIONS --------------------------------
-
-//TO DO: figure out how to reset the city state search before using the location search//
-
-// function setDefaultParameters() {
-// 	brwParametersDict = {
-// 		page: "1",
-// 		perPage: "10",
-// 		city: "",
-// 		state: "",
-// 		type: "",
-// 		locationName: "",
-// 	};
-// }
 
 // --------------------------- FUNCTIONS --------------------------------
 
@@ -71,76 +49,14 @@ const getCurrentUserLocation = (latitude, longitude) => {
 		const state = response.address.state;
 		localStorage.setItem("city", city);
 		localStorage.setItem("state", state);
-		renderBreweries(city, state, null, currentPage, null);
+		renderBreweries(city, state, null, currentPage);
 	});
 };
-
-//use brewerysearchAPI to find brewery by brewery name search
-// function getBreweryByBreweryName(locationName) {
-// 	//const nameUrl = `https://api.openbrewerydb.org/breweries?by_name=${locationName}`;
-// 	const nameUrl = breweryAPI + `?by_name=${locationName}`;
-
-// 	$.ajax({
-// 		nameUrl,
-// 		method: "GET",
-// 	}).then(response => {
-// 		localStorage.setItem("search-brewerytest", location);
-// 	});
-// }
-
-// Builds the URL string
-// function queryStringBuilder(params) {
-// 	let isFirstParam = true;
-
-// 	const breweryAPIUrlWithParams = new URL(breweryAPI);
-// 	breweryAPIUrlWithParams.searchParams.append("page", "1");
-
-// 	Object.keys(params).forEach(function (key, index) {
-// 		console.log(this[key]);
-
-// 		if (this[key]) {
-// 			switch (key) {
-// 				case "page":
-// 					breweryAPIUrlWithParams.searchParams.append("page", this[key]);
-// 					break;
-// 				case "perPage":
-// 					breweryAPIUrlWithParams.searchParams.append("per_page", this[key]);
-// 					break;
-// 				case "city":
-// 					breweryAPIUrlWithParams.searchParams.append("by_city", this[key]);
-// 					break;
-// 				case "state":
-// 					breweryAPIUrlWithParams.searchParams.append("by_state", this[key]);
-// 					break;
-// 				case "type":
-// 					breweryAPIUrlWithParams.searchParams.append("by_type", this[key]);
-// 					break;
-// 				case "locationName":
-// 					breweryAPIUrlWithParams.searchParams.append("by_name", this[key]);
-// 					break;
-// 			}
-// 		}
-// 	}, params);
-
-// 	console.log(breweryAPIUrlWithParams.href);
-
-// 	return breweryAPIUrlWithParams;
-// }
 
 // Using the OpenBreweryDB API, retrieve information on breweries based on user input
 // and dynamically render content as individual sections that contains the response data
 // as information for each retrieved brewery. Appends a random image from local storage
 // (refer to getPhotos function) to each section.
-
-// const renderBreweriesSearch = searchParams => {
-// 	// Empty out pre-existing content in div with id 'breweries'
-// 	$("#breweries").empty();
-
-// 	// Create URL to be used in ajax call using base URL and arguments passed in as
-// 	// query parameters
-// 	let breweryURL = queryStringBuilder(searchParams).href;
-// };
-
 const renderBreweries = (city, state, type, page, name, isNext) => {
 	// Empty out pre-existing content in div with id 'breweries'
 	$("#breweries").empty();
@@ -170,6 +86,8 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 		// This conditional ensures that if the next page of results is empty,
 		// then the previous page should be redisplayed.
 		// Cannot simply return since renderBreweries is emptied on being called.
+		// isNext is only true when the 'Next' button is clicked. This is to prevent
+		// an infinite loop a search returns an empty resArr.
 		if (resArr.length < 1 && isNext) {
 			currentPage--;
 			renderBreweries(city, state, type, currentPage, null);
@@ -263,18 +181,9 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 $("#search-form").submit(e => {
 	e.preventDefault();
 
-	//copy parameters dictionary
-	// setDefaultParameters();
-	// const params = brwParametersDict;
-
 	const city = $("#search-city").val();
 	const state = $("#search-state").val();
 	const type = $("#brewery-type").val();
-
-	//set parameters dictionary
-	// params["city"] = city;
-	// params["state"] = state;
-	// params["type"] = type;
 
 	// Need to store the above values for later use
 	// with pagination
@@ -285,18 +194,12 @@ $("#search-form").submit(e => {
 
 	currentPage = 1;
 
-	getPhotos();
-	renderBreweries(city, state, type, currentPage, null);
-	// $("#search-form")[0].reset();
+	renderBreweries(city, state, type, currentPage);
 });
 
 //retrieve brewery information based on user input in name form
 $("#search-form2").submit(e => {
 	e.preventDefault();
-
-	//copy parameters dictionary
-	// setDefaultParameters();
-	// const params = brwParametersDict;
 
 	const name = $("#search-brewery").val();
 
@@ -306,7 +209,6 @@ $("#search-form2").submit(e => {
 	currentPage = 1;
 
 	renderBreweries(null, null, null, null, name);
-	// $("#search-form2")[0].reset();
 });
 
 // See previous page of results
@@ -317,21 +219,11 @@ $("#prev").click(() => {
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
 
-	//copy parameters dictionary
-	// setDefaultParameters();
-	// const params = brwParametersDict;
-
-	//set parameters dictionary
-	// params["city"] = city;
-	// params["state"] = state;
-	// params["type"] = type;
-
 	// Validate page number so that the page number is NLT 1
 	if (currentPage > 1) {
 		// Decrement page
 		currentPage--;
-		// params["page"] = currentPage;
-		renderBreweries(city, state, type, currentPage, null);
+		renderBreweries(city, state, type, currentPage);
 	}
 });
 
@@ -343,17 +235,7 @@ $("#next").click(() => {
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
 
-	//copy parameters dictionary
-	// setDefaultParameters();
-	// const params = brwParametersDict;
-	//set parameters dictionary
-	// params["city"] = city;
-	// params["state"] = state;
-	// params["type"] = type;
-
 	// Increment page
-	currentPage++;
-	// params["page"] = currentPage;
 	renderBreweries(city, state, type, currentPage, null, true);
 });
 
@@ -364,4 +246,6 @@ $("document").ready(() => {
 		const longitude = response.coords.longitude;
 		getCurrentUserLocation(latitude, longitude);
 	});
+
+	getPhotos();
 });
