@@ -3,7 +3,13 @@ header {
 	text-align: left;
 	background: #1abc9c;
 	color: white;
-	font-size: 30px;
+  font-size: 30px;
+  
+}
+
+img{
+  float:right;
+  margin-right: 20%;
 }
 
 body {
@@ -18,13 +24,13 @@ h2 {
 }
 
 form {
-	padding: 10px;
+	padding: 8px;
 	margin-left: 25%;
 	margin-right: 25%;
-	width: 50%;
+  width: 50%;
 }
 
 button {
-	text-align: right;
-	right: 10px;
+ text-align: right;
+ padding: 10px;
 }
