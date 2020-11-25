@@ -1,10 +1,19 @@
 header {
 	padding: 10px;
 	text-align: left;
-	background: #1abc9c;
+	background: rgba(26, 54, 65, 0.589);
 	color: white;
   font-size: 30px;
   
+}
+.title {
+	font-family: 'Covered By Your Grace', cursive;  
+	font-size: 90px;
+}
+
+.subtitle {
+	font-family: 'Covered By Your Grace', cursive;
+  font-size: 40px;
 }
 
 img{
@@ -33,4 +42,37 @@ form {
 button {
  text-align: right;
  padding: 10px;
+}
+
+#prev {
+	border-width: 2px;
+	border-color: black;
+}
+
+#next {
+	border-width: 2px;
+	border-color: black;
+}
+
+#search-city {
+	border-width: 2px;
+	border-color: black;
+	margin-right: 5px;
+}
+
+#search-state {
+	border-width: 2px;
+	border-color: black;
+	margin-left: 5px;
+}
+
+#brewery-type {
+	border-width:2px;
+	border-color: black;
+	margin-left: 5px;
+}
+
+#search-brewery {
+	border-width: 2px;
+	border-color: black;
 }
