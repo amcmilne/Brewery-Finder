@@ -77,7 +77,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 			breweryURL += `&by_type=${type}`;
 		}
 	}
-	console.log(breweryURL);
+
 	// Make AJAX GET request to OpenBreweryDB with 'breweryURL'
 	$.ajax({
 		url: breweryURL,
@@ -211,7 +211,7 @@ $("#search-form-name").submit(e => {
 	// Set currentPage to 1
 	currentPage = 1;
 
-	renderBreweries(null, null, null, null, name);
+	renderBreweries(null, null, null, currentPage, name);
 });
 
 // See previous page of results
