@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -9,9 +8,11 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css"
 		/>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="style.css"/>
 		<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+		
 	</head>
+
 	<body>
 		<header>
 			<!-- <button
@@ -24,12 +25,14 @@
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 			</button> -->
-			<section class="hero is-medium is-primary is-bold">
+			<section class="hero is-medium is-dark is-bold">
 				<div class="hero-body">
-					<img src="https://static.wixstatic.com/media/66c0dd_34d273d345764b9ca83acfde75ccc01c.gif" alt="beer mug" height="120" width="120">
+					<img src="https://static.wixstatic.com/media/66c0dd_34d273d345764b9ca83acfde75ccc01c.gif" alt="beer mug" height="120" width="120"/>
+
 					<div class="container">
 						<h1 class="title">A Hop, Skip, and a Jump</h1>
-						<h2 class="subtitle">...away from that best breweries in town.</h2>
+						<h2 class="subtitle">...away from thet best breweries in town.</h2>
+											
 					</div>
 				</div>
 			</section>
@@ -50,16 +53,12 @@
 					id="search-state"
 					class="input"
 					type="text"
-					placeholder="State (no abbreviations)" size="44"
+					placeholder="State (no abbreviations)" size="40"
 					required
 				/>
 			</div>
 			<div class="control">
-				<button
-					id="search-button"
-					type="submit"
-					class="button is-primary is-bold"
-				>
+				<button id="search-button" type="submit" class="button is-dark is-bold">
 					Search
 				</button>
 			</div>
@@ -78,7 +77,22 @@
 				</select>
 			</div>
 		</form>
-	
+		<form id="search-form" class="field has-addons">
+			<div class="control">
+				<input
+					id="search-brewery"
+					class="input"
+					type="text"
+					placeholder="Brewery Name"
+				/>
+			</div>
+			<div class="control">
+				<button id="search-button" type="submit" class="button is-dark is-bold">
+					Search
+				</button>
+			</div>
+		</form>
+
 		<div class="container is-max-desktop" id="breweries"></div>
 
 		<button class="button" id="prev">Prev</button>
@@ -92,4 +106,3 @@
 		<script src="index.js"></script>
 	</body>
 </html>
-
