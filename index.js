@@ -6,36 +6,31 @@ const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
 
 const locationIqKey = "pk.aa879f60d2bb5ec17e4952ada25eaec7";
 
-
-var currentPage = 1;
-
-
-var brwParametersDict;
-setDefaultParameters();
-
-// --------------------------- FUNCTIONS --------------------------------
-
-//TO DO: figure out how to reset the city state search before using the location search//
-
-function setDefaultParameters() {
-	brwParametersDict = {
-		page: "1",
-		perPage: "10",
-		city: "",
-		state: "",
-		type: "",
-		locationName: ""
-	}
-}
-
-
 const brewerySearchAPI =
 	"https://api.openbrewerydb.org/breweries/search?query=dog";
 
 var currentPage = 1;
 
+// var brwParametersDict;
+
+// setDefaultParameters();
+
 // --------------------------- FUNCTIONS --------------------------------
 
+//TO DO: figure out how to reset the city state search before using the location search//
+
+// function setDefaultParameters() {
+// 	brwParametersDict = {
+// 		page: "1",
+// 		perPage: "10",
+// 		city: "",
+// 		state: "",
+// 		type: "",
+// 		locationName: "",
+// 	};
+// }
+
+// --------------------------- FUNCTIONS --------------------------------
 
 // Upon performing a search, retrieve 30 beer-related images (as urls) using Pexels API
 // and store in local storage for later use in the renderBreweries function
@@ -76,110 +71,109 @@ const getCurrentUserLocation = (latitude, longitude) => {
 		const state = response.address.state;
 		localStorage.setItem("city", city);
 		localStorage.setItem("state", state);
-		renderBreweries(city, state, null, currentPage);
+		renderBreweries(city, state, null, currentPage, null);
 	});
 };
-
 
 //use brewerysearchAPI to find brewery by brewery name search
-function getBreweryByBreweryName(locationName) {
-	//const nameUrl = `https://api.openbrewerydb.org/breweries?by_name=${locationName}`;
-	const nameUrl = breweryAPI + `?by_name=${locationName}`;
+// function getBreweryByBreweryName(locationName) {
+// 	//const nameUrl = `https://api.openbrewerydb.org/breweries?by_name=${locationName}`;
+// 	const nameUrl = breweryAPI + `?by_name=${locationName}`;
 
-	$.ajax({
-		nameUrl,
-		method: "GET",
-	}).then(response => {
-		localStorage.setItem("search-brewerytest", location);
-	});
-};
+// 	$.ajax({
+// 		nameUrl,
+// 		method: "GET",
+// 	}).then(response => {
+// 		localStorage.setItem("search-brewerytest", location);
+// 	});
+// }
 
+// Builds the URL string
+// function queryStringBuilder(params) {
+// 	let isFirstParam = true;
 
-// Builds the URL string 
-function queryStringBuilder(params) {
-	let isFirstParam = true;
+// 	const breweryAPIUrlWithParams = new URL(breweryAPI);
+// 	breweryAPIUrlWithParams.searchParams.append("page", "1");
 
+// 	Object.keys(params).forEach(function (key, index) {
+// 		console.log(this[key]);
 
-	const breweryAPIUrlWithParams = new URL(breweryAPI);
-	breweryAPIUrlWithParams.searchParams.append("page", "1");
+// 		if (this[key]) {
+// 			switch (key) {
+// 				case "page":
+// 					breweryAPIUrlWithParams.searchParams.append("page", this[key]);
+// 					break;
+// 				case "perPage":
+// 					breweryAPIUrlWithParams.searchParams.append("per_page", this[key]);
+// 					break;
+// 				case "city":
+// 					breweryAPIUrlWithParams.searchParams.append("by_city", this[key]);
+// 					break;
+// 				case "state":
+// 					breweryAPIUrlWithParams.searchParams.append("by_state", this[key]);
+// 					break;
+// 				case "type":
+// 					breweryAPIUrlWithParams.searchParams.append("by_type", this[key]);
+// 					break;
+// 				case "locationName":
+// 					breweryAPIUrlWithParams.searchParams.append("by_name", this[key]);
+// 					break;
+// 			}
+// 		}
+// 	}, params);
 
-	Object.keys(params).forEach(function (key, index) {
-		console.log(this[key]);
+// 	console.log(breweryAPIUrlWithParams.href);
 
-		if (this[key]) {
-			switch (key) {
-				case "page":
-					breweryAPIUrlWithParams.searchParams.append("page", this[key]);
-					break;
-				case "perPage":
-					breweryAPIUrlWithParams.searchParams.append("per_page", this[key]);
-					break;
-				case "city":
-					breweryAPIUrlWithParams.searchParams.append("by_city", this[key]);
-					break;
-				case "state":
-					breweryAPIUrlWithParams.searchParams.append("by_state", this[key]);
-					break;
-				case "type":
-					breweryAPIUrlWithParams.searchParams.append("by_type", this[key]);
-					break;
-				case "locationName":
-					breweryAPIUrlWithParams.searchParams.append("by_name", this[key]);
-					break;
-			}
-		}
-	}, params);
-
-
-	console.log(breweryAPIUrlWithParams.href);
-
-	return breweryAPIUrlWithParams;
-
-}
-
-
+// 	return breweryAPIUrlWithParams;
+// }
 
 // Using the OpenBreweryDB API, retrieve information on breweries based on user input
 // and dynamically render content as individual sections that contains the response data
 // as information for each retrieved brewery. Appends a random image from local storage
 // (refer to getPhotos function) to each section.
 
+// const renderBreweriesSearch = searchParams => {
+// 	// Empty out pre-existing content in div with id 'breweries'
+// 	$("#breweries").empty();
 
-const renderBreweries = (searchParams) => {
+// 	// Create URL to be used in ajax call using base URL and arguments passed in as
+// 	// query parameters
+// 	let breweryURL = queryStringBuilder(searchParams).href;
+// };
+
+const renderBreweries = (city, state, type, page, name, isNext) => {
 	// Empty out pre-existing content in div with id 'breweries'
 	$("#breweries").empty();
 
 	// Create URL to be used in ajax call using base URL and arguments passed in as
 	// query parameters
-	let breweryURL = queryStringBuilder(searchParams).href;
+	var breweryUrl;
 
-const renderBreweries = (city, state, type, page) => {
-	// Empty out pre-existing content in div with id 'breweries'
-	$("#breweries").empty();
+	if (name) {
+		breweryURL = `${breweryAPI}?by_name=${name}`;
+	} else {
+		breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
+			city
+		)}&by_state=${encodeURIComponent(state)}&per_page=5&page=${page}`;
 
-	// Create URL to be used in ajax call using base URL and arguments passed in as
-	// query parameters
-	let breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
-		city
-	)}&by_state=${encodeURIComponent(state)}&per_page=5&page=${page}`;
-
-	// Only append type query parameter if a type is provided
-	if (type) {
-		breweryURL += `&by_type=${type}`;
+		// Only append type query parameter if a type is provided
+		if (type) {
+			breweryURL += `&by_type=${type}`;
+		}
 	}
-
 
 	// Make AJAX GET request to OpenBreweryDB with 'breweryURL'
 	$.ajax({
 		url: breweryURL,
 		method: "GET",
 	}).then(resArr => {
+		console.log("fire");
 		// This conditional ensures that if the next page of results is empty,
 		// then the previous page should be redisplayed.
 		// Cannot simply return since renderBreweries is emptied on being called.
-		if (resArr.length < 1) {
+		if (resArr.length < 1 && isNext) {
 			currentPage--;
-			renderBreweries(city, state, type, currentPage);
+			renderBreweries(city, state, type, currentPage, null);
 		}
 		resArr.forEach(response => {
 			// VARIABLES
@@ -239,13 +233,10 @@ const renderBreweries = (city, state, type, page) => {
 				brewery.append(breweryWebsite);
 			}
 
-
 			// Sets 'imageURL' to a random image url from local storage.
 			const imageURL = selectRandomImage(
 				JSON.parse(localStorage.getItem("images"))
 			);
-
-
 
 			// Third level dynamic content. Displays image from 'imageURL'.
 			const breweryImage = $(
@@ -274,18 +265,17 @@ $("#search-form").submit(e => {
 	e.preventDefault();
 
 	//copy parameters dictionary
-	setDefaultParameters();
-	const params = brwParametersDict;
+	// setDefaultParameters();
+	// const params = brwParametersDict;
 
 	const city = $("#search-city").val();
 	const state = $("#search-state").val();
 	const type = $("#brewery-type").val();
 
-
 	//set parameters dictionary
-	params['city'] = city;
-	params['state'] = state;
-	params['type'] = type;
+	// params["city"] = city;
+	// params["state"] = state;
+	// params["type"] = type;
 
 	// Need to store the above values for later use
 	// with pagination
@@ -296,9 +286,9 @@ $("#search-form").submit(e => {
 
 	currentPage = 1;
 
-	getPhotos(); 
-	renderBreweries(params);
-	$('#search-form')[0].reset();
+	getPhotos();
+	renderBreweries(city, state, type, currentPage, null);
+	// $("#search-form")[0].reset();
 });
 
 //retrieve brewery information based on user input in name form
@@ -306,22 +296,18 @@ $("#search-form2").submit(e => {
 	e.preventDefault();
 
 	//copy parameters dictionary
-	setDefaultParameters();
-	const params = brwParametersDict;
+	// setDefaultParameters();
+	// const params = brwParametersDict;
 
-	const location = $("#search-brewery").val();
+	const name = $("#search-brewery").val();
 
-	localStorage.setItem("search-brewery", location);
+	localStorage.setItem("search-brewery", name);
+
 	// Set currentPage to 1
-
 	currentPage = 1;
 
-	//set parameters dictionary
-	params['locationName'] = location;
-	params['page'] = currentPage;
-
-	renderBreweries(params);
-	$('#search-form2')[0].reset();
+	renderBreweries(null, null, null, null, name);
+	// $("#search-form2")[0].reset();
 });
 
 // See previous page of results
@@ -332,22 +318,21 @@ $("#prev").click(() => {
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
 
-
 	//copy parameters dictionary
-	setDefaultParameters();
-	const params = brwParametersDict;
+	// setDefaultParameters();
+	// const params = brwParametersDict;
 
 	//set parameters dictionary
-	params['city'] = city;
-	params['state'] = state;
-	params['type'] = type;
+	// params["city"] = city;
+	// params["state"] = state;
+	// params["type"] = type;
 
 	// Validate page number so that the page number is NLT 1
 	if (currentPage > 1) {
 		// Decrement page
 		currentPage--;
-		params['page'] = currentPage;
-		renderBreweries(params);
+		// params["page"] = currentPage;
+		renderBreweries(city, state, type, currentPage, null);
 	}
 });
 
@@ -359,20 +344,18 @@ $("#next").click(() => {
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
 
-
 	//copy parameters dictionary
-	setDefaultParameters();
-	const params = brwParametersDict;
+	// setDefaultParameters();
+	// const params = brwParametersDict;
 	//set parameters dictionary
-	params['city'] = city;
-	params['state'] = state;
-	params['type'] = type;
-
+	// params["city"] = city;
+	// params["state"] = state;
+	// params["type"] = type;
 
 	// Increment page
 	currentPage++;
-	params['page'] = currentPage;
-	renderBreweries(params);
+	// params["page"] = currentPage;
+	renderBreweries(city, state, type, currentPage, null, true);
 });
 
 // Auto-render Current Location Information
