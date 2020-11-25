@@ -167,7 +167,6 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 		url: breweryURL,
 		method: "GET",
 	}).then(resArr => {
-		console.log("fire");
 		// This conditional ensures that if the next page of results is empty,
 		// then the previous page should be redisplayed.
 		// Cannot simply return since renderBreweries is emptied on being called.
