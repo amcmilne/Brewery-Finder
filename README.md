@@ -10,35 +10,29 @@ For each displayed brewery, the name, address, phone number, and website of the 
 
 The development of Brewery Finder required:
 
-* [Bulma] - is a free, open source CSS framework based on Flexbox
-* [jQuery]
-* [FontAwesome] - v5.14.0; Get vector icons and social logos on your website.
-* Visual Studio Code
-* [GitHub Repo] - Brewery Finder
-* [OpenBreweryDB] -  free dataset and API with public information on breweries, cideries, brewpubs, and bottleshops.
-* [PexelsAPI] - helps you incorporate the world’s best free stock photos and videos into your app or website.
-* [LocationIQ] - provides flexible enterprise-grade location based solutions.
-* [Dillinger] - online Mardown Editor
+- [Bulma] - is a free, open source CSS framework based on Flexbox
+- [jQuery]
+- [FontAwesome] - v5.14.0; Get vector icons and social logos on your website.
+- Visual Studio Code
+- [GitHub Repo] - Brewery Finder
+- [OpenBreweryDB] - free dataset and API with public information on breweries, cideries, brewpubs, and bottleshops.
+- [PexelsAPI] - helps you incorporate the world’s best free stock photos and videos into your app or website.
+- [LocationIQ] - provides flexible enterprise-grade location based solutions.
+- [Dillinger] - online Mardown Editor
 
-#### Find the work: 
+#### Find the work:
 
 https://amcmilne.github.io/Brewery-Finder/
 
-
-License:
-----
+## License:
 
 MIT
 
-
-
-
- 
-   [jQuery]: <http://jquery.com>
-   [Bulma]: https://bulma.io/
-   [FontAwesome]:https://fontawesome.com/
-   [GitHub Repo]: https://amcmilne.github.io/Brewery-Finder/
-   [OpenBreweryDB]: https://www.openbrewerydb.org/
-   [PexelsApi]: https://www.pexels.com/api/
-   [LocationIQ]: https://locationiq.com/
-   [Dillinger]: https://dillinger.io/
+[jquery]: http://jquery.com
+[bulma]: https://bulma.io/
+[fontawesome]: https://fontawesome.com/
+[github repo]: https://amcmilne.github.io/Brewery-Finder/
+[openbrewerydb]: https://www.openbrewerydb.org/
+[pexelsapi]: https://www.pexels.com/api/
+[locationiq]: https://locationiq.com/
+[dillinger]: https://dillinger.io/

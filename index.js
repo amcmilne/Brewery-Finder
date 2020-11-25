@@ -76,6 +76,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 		if (type) {
 			breweryURL += `&by_type=${type}`;
 		}
+		console.log(breweryURL);
 	}
 
 	// Make AJAX GET request to OpenBreweryDB with 'breweryURL'
@@ -181,9 +182,9 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 $("#search-form-location").submit(e => {
 	e.preventDefault();
 
-	const city = $("#search-city").val();
-	const state = $("#search-state").val();
-	const type = $("#brewery-type").val();
+	const city = $("#search-city").val().trim();
+	const state = $("#search-state").val().trim();
+	const type = $("#brewery-type").val().trim();
 
 	// Need to store the above values for later use
 	// with pagination
@@ -204,7 +205,7 @@ $("#search-form-location").submit(e => {
 $("#search-form-name").submit(e => {
 	e.preventDefault();
 
-	const name = $("#search-brewery").val();
+	const name = $("#search-brewery").val().trim();
 
 	localStorage.setItem("name", name);
 
@@ -247,11 +248,10 @@ $("#next").click(() => {
 
 // Auto-render Current Location Information
 $("document").ready(() => {
+	getPhotos();
 	navigator.geolocation.getCurrentPosition(response => {
 		const latitude = response.coords.latitude;
 		const longitude = response.coords.longitude;
 		getCurrentUserLocation(latitude, longitude);
 	});
-
-	getPhotos();
 });
