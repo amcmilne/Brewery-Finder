@@ -66,7 +66,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 	var breweryUrl;
 
 	if (name) {
-		breweryURL = `${breweryAPI}?by_name=${name}`;
+		breweryURL = `${breweryAPI}?by_name=${name}&per_page=5&page=${page}`;
 	} else {
 		breweryURL = `${breweryAPI}?by_city=${encodeURIComponent(
 			city
@@ -178,7 +178,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 // ---------------------- EVENT LISTENERS -----------------------------
 
 // Retrieve brewery information based on user input in location form
-$("#search-form").submit(e => {
+$("#search-form-location").submit(e => {
 	e.preventDefault();
 
 	const city = $("#search-city").val();
@@ -190,6 +190,9 @@ $("#search-form").submit(e => {
 	localStorage.setItem("city", city);
 	localStorage.setItem("state", state);
 	localStorage.setItem("type", type);
+	// Empty local storage name so that search by location is used prior to
+	// making ajax call.
+	localStorage.setItem("name", "");
 	// Set currentPage to 1
 
 	currentPage = 1;
@@ -198,12 +201,12 @@ $("#search-form").submit(e => {
 });
 
 //retrieve brewery information based on user input in name form
-$("#search-form2").submit(e => {
+$("#search-form-name").submit(e => {
 	e.preventDefault();
 
 	const name = $("#search-brewery").val();
 
-	localStorage.setItem("search-brewery", name);
+	localStorage.setItem("name", name);
 
 	// Set currentPage to 1
 	currentPage = 1;
@@ -218,12 +221,13 @@ $("#prev").click(() => {
 	const city = localStorage.getItem("city");
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
+	const name = localStorage.getItem("name");
 
 	// Validate page number so that the page number is NLT 1
 	if (currentPage > 1) {
 		// Decrement page
 		currentPage--;
-		renderBreweries(city, state, type, currentPage);
+		renderBreweries(city, state, type, currentPage, name);
 	}
 });
 
@@ -234,9 +238,11 @@ $("#next").click(() => {
 	const city = localStorage.getItem("city");
 	const state = localStorage.getItem("state");
 	const type = localStorage.getItem("type");
+	const name = localStorage.getItem("name");
 
 	// Increment page
-	renderBreweries(city, state, type, currentPage, null, true);
+	currentPage++;
+	renderBreweries(city, state, type, currentPage, name, true);
 });
 
 // Auto-render Current Location Information
