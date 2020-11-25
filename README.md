@@ -22,7 +22,7 @@ The development of Brewery Finder required:
 
 #### Find the work: 
 
-https://github.com/amcmilne/Brewery-Finder
+https://amcmilne.github.io/Brewery-Finder/
 
 
 License:
