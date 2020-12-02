@@ -41,26 +41,31 @@ form {
 #search-city {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #search-state {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #brewery-type {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #search-brewery {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #breweries {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
+	box-shadow: 10px 10px 5px grey;
 }
 
 .brewery-image {
@@ -72,12 +77,14 @@ form {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 5vh;
+	
 }
 
 #prev {
 	border-width: 2px;
 	border-color: black;
 	margin-right: 5px;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #next {
