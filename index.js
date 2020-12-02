@@ -21,9 +21,10 @@ const getPhotos = () => {
 			"https://api.pexels.com/v1/search?query=beer&orientation=portrait&per_page=30",
 		method: "GET",
 	}).then(response => {
+		console.log(response);
 		const photos = [];
 		response.photos.forEach(photo => {
-			photos.push(photo.src.small);
+			photos.push(photo.src.medium);
 		});
 		localStorage.setItem("images", JSON.stringify(photos));
 	});
@@ -159,7 +160,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 			const breweryImage = $(
 				`<div class="media-left">
 						<figure class="image">
-							<img src=${imageURL} alt="Image" />
+							<img class="brewery-image" src=${imageURL} alt="Image" />
 						</figure>
 					</div>`
 			);
