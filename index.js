@@ -76,7 +76,6 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 		if (type) {
 			breweryURL += `&by_type=${type}`;
 		}
-		console.log(breweryURL);
 	}
 
 	// Make AJAX GET request to OpenBreweryDB with 'breweryURL'
@@ -91,7 +90,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 		// an infinite loop a search returns an empty resArr.
 		if (resArr.length < 1 && isNext) {
 			currentPage--;
-			renderBreweries(city, state, type, currentPage, null);
+			renderBreweries(city, state, type, currentPage, name);
 		}
 		resArr.forEach(response => {
 			// VARIABLES
@@ -212,7 +211,7 @@ $("#search-form-name").submit(e => {
 	// Set currentPage to 1
 	currentPage = 1;
 
-	renderBreweries(null, null, null, null, name);
+	renderBreweries(null, null, null, currentPage, name);
 });
 
 // See previous page of results
