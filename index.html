@@ -10,6 +10,7 @@
 		/>
 		<link rel="stylesheet" href="style.css"/>
 		<script src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		
 	</head>
 
@@ -27,7 +28,7 @@
 			</button> -->
 			<section class="hero is-medium is-dark is-bold">
 				<div class="hero-body">
-					<img src="https://static.wixstatic.com/media/66c0dd_34d273d345764b9ca83acfde75ccc01c.gif" alt="beer mug" height="120" width="120"/>
+											<img src="https://static.wixstatic.com/media/66c0dd_34d273d345764b9ca83acfde75ccc01c.gif" alt="beer mug" height="120" width="120"/>
 
 					<div class="container">
 						<h1 class="title">A Hop, Skip, and a Jump</h1>
@@ -37,7 +38,7 @@
 				</div>
 			</section>
 		</header>
-
+<div class="control">
 		<form id="search-form" class="field has-addons">
 			<div class="control">
 				<input
@@ -53,7 +54,7 @@
 					id="search-state"
 					class="input"
 					type="text"
-					placeholder="State (no abbreviations)" size="40"
+					placeholder="State (no abbreviations)" size="20"
 					required
 				/>
 			</div>
@@ -62,6 +63,7 @@
 					Search
 				</button>
 			</div>
+		
 			<div class="select">
 				<select id="brewery-type">
 					<option value="">Type of Brewery</option>
@@ -92,7 +94,7 @@
 				</button>
 			</div>
 		</form>
-
+	
 		<div class="container is-max-desktop" id="breweries"></div>
 
 		<button class="button" id="prev">Prev</button>

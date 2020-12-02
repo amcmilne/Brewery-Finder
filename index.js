@@ -1,4 +1,9 @@
 
+$(document).ready(function() {
+	//Call a variable to know the width of the window
+	var screenWidth = $(window).width();
+	$('form').css('width', screenWidth + 'px');
+ });
 const breweryAPI = `https://api.openbrewerydb.org/breweries`;
 
 const pexelsKey = "563492ad6f91700001000001fe3c105e24bd4d0fb571b345de8d087a";
