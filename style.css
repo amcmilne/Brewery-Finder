@@ -12,13 +12,13 @@ header {
 	font-size: 30px;
 }
 
-#logo {
-	float: right;
-}
-
 .title {
 	font-family: "Covered By Your Grace", cursive;
 	font-size: 90px;
+}
+
+#logo {
+	float: right;
 }
 
 .subtitle {
@@ -56,11 +56,14 @@ form {
 #search-brewery {
 	border-width: 2px;
 	border-color: black;
+	margin-right: 5px;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #breweries {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
+	box-shadow: 10px 10px 5px grey;
 }
 
 .brewery-image {
@@ -78,12 +81,14 @@ form {
 	border-width: 2px;
 	border-color: black;
 	margin-right: 5px;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #next {
 	border-width: 2px;
 	border-color: black;
 	margin-left: 5px;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #footer {
@@ -91,4 +96,56 @@ form {
 	padding-bottom: 5vh;
 	color: white;
 	background-color: rgb(70, 70, 70);
+}
+
+.fade-in {
+	animation: fadeIn ease 10s;
+	-webkit-animation: fadeIn ease 10s;
+	-moz-animation: fadeIn ease 10s;
+	-o-animation: fadeIn ease 10s;
+	-ms-animation: fadeIn ease 10s;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-moz-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-o-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-ms-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
