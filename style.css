@@ -44,32 +44,44 @@ form {
 #search-city {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #search-state {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #brewery-type {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #search-brewery {
 	border-width: 2px;
 	border-color: black;
+	box-shadow: 10px 10px 5px grey;
 }
 
 /* Brewery Information */
 #breweries {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
+	box-shadow: 10px 10px 5px grey;
 }
 
 .brewery-image {
-	max-width: 50%;
-	height: auto;
+	max-width: 15vw;
+}
+
+.content {
+	font-size: 2vw;
+}
+
+.content > p {
+	margin-bottom: 1vh !important;
 }
 
 /* Pagination Buttons */
@@ -83,6 +95,7 @@ form {
 	border-width: 2px;
 	border-color: black;
 	margin-right: 5px;
+	box-shadow: 10px 10px 5px grey;
 }
 
 #next {
