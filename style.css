@@ -69,18 +69,17 @@ form {
 #breweries {
 	margin-top: 5vh;
 	margin-bottom: 5vh;
-	box-shadow: 10px 10px 5px grey;
 }
 
 .brewery-image {
 	max-width: 15vw;
 }
 
-.content {
+.brewery.content {
 	font-size: 2vw;
 }
 
-.content > p {
+.brewery-content > p {
 	margin-bottom: 1vh !important;
 }
 
@@ -89,7 +88,6 @@ form {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 5vh;
-	
 }
 
 #prev {

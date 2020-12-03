@@ -115,7 +115,7 @@ const renderBreweries = (city, state, type, page, name, isNext) => {
 			// Second level dynamic element. Contains 'brewery' and 'breweryImage'
 			const breweryArticle = $("<article>").addClass("media");
 			// Third level dynamic element. Contains content using response data from call to 'breweryURL'.
-			const brewery = $("<div>").addClass("content");
+			const brewery = $("<div>").addClass("content brewery-content");
 
 			// Conditionally render content if the corresponding data is
 			// retrieved from call to 'breweryURL'.
