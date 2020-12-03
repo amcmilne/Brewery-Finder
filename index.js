@@ -21,7 +21,6 @@ const getPhotos = () => {
 			"https://api.pexels.com/v1/search?query=beer&orientation=portrait&per_page=30",
 		method: "GET",
 	}).then(response => {
-		console.log(response);
 		const photos = [];
 		response.photos.forEach(photo => {
 			photos.push(photo.src.medium);
@@ -255,3 +254,25 @@ $("document").ready(() => {
 		getCurrentUserLocation(latitude, longitude);
 	});
 });
+
+// MAKE DROPDOWN & SEARCH BUTTON RESPONSIVE
+// ===================================================================================
+
+// Create a condition that targets viewports at least 768px wide
+const mediaQuery = window.matchMedia("(min-width: 768px)");
+
+function handleWindowChange(e) {
+	if (e.matches) {
+		$("#filter-submit").addClass("is-grouped");
+		$("#brewery-type").css("margin-bottom", "0");
+	} else {
+		$("#filter-submit").removeClass("is-grouped");
+		$("#brewery-type").css("margin-bottom", "5vh");
+	}
+}
+
+// Register event listener
+mediaQuery.addListener(handleWindowChange);
+
+// Initial check
+handleWindowChange(mediaQuery);

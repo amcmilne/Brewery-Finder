@@ -21,10 +21,12 @@
 	</head>
 
 	<body>
+		<!-- Header -->
 		<header>
 			<section class="hero is-medium is-dark is-bold">
 				<div class="hero-body">
 					<div class="fade-in">
+						<!-- Logo -->
 						<img
 							id="logo"
 							src="https://static.wixstatic.com/media/66c0dd_34d273d345764b9ca83acfde75ccc01c.gif"
@@ -34,6 +36,7 @@
 						/>
 					</div>
 
+					<!-- Title -->
 					<div class="container">
 						<h1 class="title">A Hop, Skip, and a Jump</h1>
 						<h2 class="subtitle">...away from the best breweries in town.</h2>
@@ -42,6 +45,7 @@
 			</section>
 		</header>
 
+		<!-- Search Form: Search By Location (City, State) -->
 		<div class="container max-desktop">
 			<form id="search-form-location">
 				<div class="field">
@@ -69,7 +73,8 @@
 					</div>
 				</div>
 
-				<div class="field is-grouped">
+				<!-- Filter Search By Type -->
+				<div id="filter-submit" class="field is-grouped">
 					<div class="control">
 						<div class="select">
 							<select id="brewery-type">
@@ -87,17 +92,12 @@
 						</div>
 					</div>
 					<div class="control">
-						<button
-							id="search-button"
-							type="submit"
-							class="button is-dark is-bold"
-						>
-							Search
-						</button>
+						<button type="submit" class="button is-dark is-bold">Search</button>
 					</div>
 				</div>
 			</form>
 
+			<!-- Search Form: Search By Name -->
 			<form id="search-form-name" class="field has-addons">
 				<div class="control is-expanded">
 					<input
@@ -109,24 +109,21 @@
 					/>
 				</div>
 				<div class="control">
-					<button
-						id="search-button"
-						type="submit"
-						class="button is-dark is-bold"
-					>
-						Search
-					</button>
+					<button type="submit" class="button is-dark is-bold">Search</button>
 				</div>
 			</form>
 		</div>
 
+		<!-- Section for Dynamic Rendering of Brewery Information -->
 		<div class="container is-max-desktop" id="breweries"></div>
 
+		<!-- Pagination Buttons -->
 		<div id="pagination-buttons">
 			<button class="button is-light" id="prev">Prev</button>
 			<button class="button is-light" id="next">Next</button>
 		</div>
 
+		<!-- Footer -->
 		<footer id="footer">
 			<div class="content has-text-centered">
 				<p id="signature">
