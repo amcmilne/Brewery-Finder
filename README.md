@@ -36,3 +36,6 @@ MIT
 [pexelsapi]: https://www.pexels.com/api/
 [locationiq]: https://locationiq.com/
 [dillinger]: https://dillinger.io/
+
+## Contact:
+Kole Gasior: jkole822@gmail.com
