@@ -39,3 +39,4 @@ MIT
 
 ## Contact:
 Kole Gasior: jkole822@gmail.com
+Ann Cooper-Milne: amcmilne@gmail.com
